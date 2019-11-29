@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 	 
-    <a href="<%=path%>/resource/login/forgetPwd.jsp" target="_blank">忘记密码?</a>	
+    <a href="<%=path%>/index.jsp" target="_blank">忘记密码?</a>
 
 	
 	
@@ -81,30 +81,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <input type="hidden" value="<%=basePath%>" id="hidd">
 
-<script type="text/javascript">
-$(function () {
+<script>
+
+
+$(function(){
     window.flag;
-    var username = "${sessionScope.info.username}"
-    var password = "${sessionScope.info.password}"
-    /*记住密码后从session里获取用户名密码,填充到网页*/
+    var username="${sessionScope.info.username}";
+    var password="${sessionScope.info.password}";
+
+    /*记住密码后从session里获取用户名密码,填充到页面*/
     $("#username1").val(username);
     $("#password1").val(password);
 
-    if($("#username1").val()!=''&&$("#password1").val()!=''){
-        $("input[type='checkbox']").attr("checked","checked");
-    }else{
-        $("input[type='checkbox']").removeAttr("checked");
-    }
+   if($("#username1").val()!=''&&$("#password1").val()!=''){
+       $("input[type='checkbox']").attr("checked","checked");
+   }else{
+       $("input[type='checkbox']").removeAttr("checked");
+   }
 
 
-    $("#btnLogin").click(function () {
-        if($("input[type='checkbox']").is(':checked')){
-            flag = "yes";
+
+
+    $("#btnLogin").click(function(){
+        if($("input[type='checkbox']").is(':checked')) {
+            flag="yes";
         }else{
-            flag = "no";
+            flag="no";
         }
 
-        if($("#username1").val()!=''&&$("#password1").val()!=''){
+  if($("#username1").val()!=''&&$("#password1").val()!=''){
             $.ajax({
                 url:"login",
                 type:"post",
@@ -112,53 +117,62 @@ $(function () {
                     "username":$("#username1").val(),
                     "password":$("#password1").val(),
                     "flag":flag
-                },success:function (data) {
-                    if(data=="none"){
-                        $("#msg").html("用户不存在！");
-                    }else if(data=="yes"){
-                        //跳转页面
-                        $("#msg").html("成功！");
-                    }else{
-                        $("#msg").html("用户名或密码错误！");
-                    }
+                },success:function(data){
+                 if(data=="none"){
+                     $("#msg").html("用户不存在!");
+                 }else if(data=="yes"){
+                     //跳转页面
+                     window.location.href="<%=basePath%>resource/shop/navigator.jsp";
+                 }else{
+                     $("#msg").html("用户名或密码错误!");
+                 }
+
                 }
             })
-        }else{
-            $("#msg").html("用户名或密码不能为空！");
-        }
+  }else{
+      $("#msg").html("用户名或密码不能为空!");
+  }
+
+
+
+
     });
 
 
-  $("#btnRegister").click(function () {
 
+  $("#btnRegister").click(function(){
       if($("#username2").val()!=''&&$("#password2").val()!=''&&$("#email").val()!=''){
           $.ajax({
-      url:"register",
-      type:"post",
-        async:false,
-      data:{
-        "username":$("#username2").val(),
-        "password":$("#password2").val(),
-        "email":$("#email").val()
-      },
-      success:function (data) {
-        if(data=="existed"){
-          $("#msg2").html("用户名已存在！");
-        }else if(data=="yes"){
-          $("#msg2").html("注册成功！");
-        }else{
-          $("#msg2").html("注册失败！");
-        }
-        return false;
-      }
-    })
-      }else {
-          $("#msg2").html("用户名或密码或邮箱不能为空！");
+              url: "register",
+              type: "post",
+              async: false,
+              data: {
+                  "username": $("#username2").val(),
+                  "password": $("#password2").val(),
+                  "email": $("#email").val()
+              },
+              success: function (data) {
+                  if (data == "existed") {
+                      $("#msg2").html("用户名已存在!");
+                  } else if (data == "yes") {
+                      $("#msg2").html("注册成功!");
+                  } else {
+                      $("#msg2").html("注册失败!");
+                  }
+                  return false;
+              }
+          })
+      }else{
+          $("#msg2").html("注册信息填写不完整!");
       }
   });
-})
+
+});
+
+
 
 </script>
+
 
 </body>
 
