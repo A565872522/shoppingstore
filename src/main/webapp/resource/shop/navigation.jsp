@@ -271,7 +271,7 @@
         </div>
     </div>
 </div>
-<iframe src="<%=basePath%>resource/shop/showProducts.jsp" id="myframe"></iframe>
+<iframe id="myframe"></iframe>
 <img src="<%=basePath%>resource/images/top.png" id="topImg">
 <script>
 $(function(){
@@ -293,10 +293,13 @@ $(function(){
 
     $(".pieces").on("click",".future_ui__piece",function () {
         // alert($(this).children().children().children().text());
+        var type=$(this).children().children().children().text();
+        $("#myframe").attr("src","<%=basePath%>resource/shop/showProducts.jsp?p_type="+type);
         $(".intro").hide();
         $("#myframe").show();
         $("#topImg").show();
-    })
+    });
+
 
     $("#topImg").click(function () {
         $(".intro").show();
