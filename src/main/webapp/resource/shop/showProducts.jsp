@@ -40,16 +40,16 @@
        var str="<div  class='sHoverItem'>" +
            "    <img  src='"+data[i].pic+"'>" +
            "    <span  class='sIntro'>" +
-           "<h2>"+data[i].pName+"</h2>" +
+           "<h4 style='color: white'>"+data[i].pName+"</h4>" +
            "<p>"+data[i].intro+"</p>" +
            "<p>$"+data[i].price+"</p>"+
            "<button>立即购买</button>" +
-           "<button>加入购物车</button>" +
+           "<button pid='"+data[i].pId+"' class='addCart'>加入购物车</button>" +
            "</span>" +
            " </div>";
            $(".container").append(str);
        }
-
+        $(this).next().str("pid");
 
 
           var b=new sHover('head','headIntro');
@@ -78,6 +78,9 @@
       }
   });
 
+  $(".container").on("click",".addCart",function () {
+     alert($(this).attr("pid"));
+  });
 
     });
 
