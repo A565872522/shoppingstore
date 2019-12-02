@@ -275,7 +275,7 @@
         </div>
     </div>
 </div>
-<iframe  id="myframe"></iframe>
+<iframe id="myframe"></iframe>
 <img src="<%=basePath%>resource/images/top.png" id="topImg"/>
 <script>
 $(function(){

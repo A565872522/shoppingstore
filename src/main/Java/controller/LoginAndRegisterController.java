@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import service.UserService;
 import serviceimpl.UserServiceImpl;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -44,18 +45,45 @@ public class LoginAndRegisterController {
     }
 
     @RequestMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password, @RequestParam String flag, HttpServletRequest req) {
+    public String login(@RequestParam String username, @RequestParam String password, @RequestParam String flag, HttpServletRequest req, HttpServletResponse resp) {
+//        Userinfo ui = usi.selectByUsername(username);
+//        if(ui==null){
+//            return "none";
+//        }else{
+//            if(DigestUtils.md5Hex(password.getBytes()).equals(ui.getPassword())){
+//                if(flag.equals("yes")){
+//                    req.getSession().setAttribute("info",ui);
+//                    ui.setPassword(password);
+//                }else{
+//                    req.getSession().removeAttribute("info");
+//                }
+//                return "yes";
+//            }else{
+//                return "no";
+//            }
+//        }
+
         Userinfo ui = usi.selectByUsername(username);
         if(ui==null){
             return "none";
         }else{
             if(DigestUtils.md5Hex(password.getBytes()).equals(ui.getPassword())){
-                if(flag.equals("yes")){
-                    req.getSession().setAttribute("info",ui);
-                    ui.setPassword(password);
-                }else{
-                    req.getSession().removeAttribute("info");
-                }
+
+                    Cookie name = new Cookie("username", username);
+                    Cookie pwd = new Cookie("password", password);
+                    name.setMaxAge(10000);
+                    pwd.setMaxAge(10000);
+                    resp.addCookie(name);
+                    resp.addCookie(pwd);
+                    if(flag.equals("yes")){
+                        Cookie cookie1 = new Cookie("flag","no");
+                        cookie1.setMaxAge(10000);
+                        resp.addCookie(cookie1);
+                    }else{
+                        Cookie cookie2 = new Cookie("flag","yes");
+                        cookie2.setMaxAge(10000);
+                        resp.addCookie(cookie2);
+                    }
                 return "yes";
             }else{
                 return "no";
