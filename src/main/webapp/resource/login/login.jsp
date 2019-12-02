@@ -125,7 +125,7 @@
                         }else if(data=="yes"){
                             //跳转页面
                             $("#msg").html("登录成功！")
-                            window.location.href="<%=basePath%>resource/shop/navigation.jsp";
+                            window.location.href="<%=basePath%>resource/shop/navigation.jsp?username="+$("#username1").val();
                         }else{
                             $("#msg").html("用户名或密码错误!");
                         }

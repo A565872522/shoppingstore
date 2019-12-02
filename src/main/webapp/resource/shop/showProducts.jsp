@@ -94,7 +94,7 @@
     // alert($(this).attr("pid"));
 
       var username="${sessionScope.username}";
-    if(getCookie("username")&&getCookie("password")){
+    if(getQueryString("username")!=null||getQueryString("username")!=''||getQueryString("username")!=undefined){
 
     }else{
         window.location.href="<%=basePath%>resource/login/login.jsp";
