@@ -68,7 +68,6 @@ public class LoginAndRegisterController {
             return "none";
         }else{
             if(DigestUtils.md5Hex(password.getBytes()).equals(ui.getPassword())){
-
                     Cookie name = new Cookie("username", username);
                     Cookie pwd = new Cookie("password", password);
                     name.setMaxAge(10000);

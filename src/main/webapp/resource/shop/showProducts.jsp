@@ -93,11 +93,22 @@
   $(".grid").on("click",".action",function(){
     // alert($(this).attr("pid"));
 
-      var username="${sessionScope.username}";
-    if(getQueryString("username")!=null||getQueryString("username")!=''||getQueryString("username")!=undefined){
-
-    }else{
+      var username="${cookie.username.value}";
+    if(getCookie("username")=="null"||getCookie("username")==''||getCookie("username")==undefined){
+        // alert(getCookie("username"));
         window.location.href="<%=basePath%>resource/login/login.jsp";
+    }else{
+        $.ajax({
+            url:"addCar",
+            type:"post",
+            data:{
+                "pid":$(this).attr("pid"),
+                "username":getCookie("username")
+            },
+            success:function (data) {
+
+            }
+        })
     }
   });
 
@@ -130,18 +141,18 @@
             document.getElementsByTagName("head")[0].appendChild(fileref);
     }
 
-    function getCookie(name){
-        var strcookie = document.cookie;//获取cookie字符串
-        var arrcookie = strcookie.split("; ");//分割
-        // 遍历匹配
-        for ( var i = 0; i < arrcookie.length; i++) {
-            var arr = arrcookie[i].split("=");
-            if (arr[0] == name){
-                return arr[1];
-            }
-        }
-        return "";
-    }
+    // function getCookie(name){
+    //     var strcookie = document.cookie;//获取cookie字符串
+    //     var arrcookie = strcookie.split("; ");//分割
+    //     // 遍历匹配
+    //     for ( var i = 0; i < arrcookie.length; i++) {
+    //         var arr = arrcookie[i].split("=");
+    //         if (arr[0] == name){
+    //             return arr[1];
+    //         }
+    //     }
+    //     return "";
+    // }
 
 </script>
 
