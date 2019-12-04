@@ -5,7 +5,7 @@ import org.aspectj.lang.Signature;
 
 public class OrderAspect {
     /*
-     * 前置通知
+     * 前置通vh知
      * */
     public void beforeCheck(JoinPoint joinPoint) {
         Signature sig=joinPoint.getSignature();
