@@ -67,21 +67,21 @@
 -->
     <!--<mvc:resources location="/WEB-INF/resource/"  mapping="/resource/**"  />-->
 
-    <!--<bean id="myAs" class="aspect.MyAspect2"></bean>
--->
- <!--   &lt;!&ndash;aop:config标签用来配置有关切面的配置  &ndash;&gt;
+    <bean id="myAs" class="aspect.OrderAspect"></bean>
+
+    <!--aop:config标签用来配置有关切面的配置  -->
     <aop:config>
-        &lt;!&ndash; 设置切点表达式 以便下面引用 &ndash;&gt;
+        <!-- 设置切点表达式 以便下面引用 -->
         <aop:pointcut expression="execution(* controller.*.*(..))" id="cut"/>
-        &lt;!&ndash; 配置切面所用的bean 和优先级 &ndash;&gt;
+        <!-- 配置切面所用的bean 和优先级 -->
         <aop:aspect ref="myAs" order="1" >
-            &lt;!&ndash; 配置切面方法 &ndash;&gt;
+            <!-- 配置切面方法 -->
             <aop:before method="beforeCheck" pointcut-ref="cut"/>
             <aop:after method="afterCheck"  pointcut-ref="cut"/>
             <aop:after-returning method="afterReturn" pointcut-ref="cut" returning="res"/>
             <aop:after-throwing method="afterThrow" pointcut-ref="cut" throwing="ex"/>
             <aop:around method="around" pointcut-ref="cut"/>
         </aop:aspect>
-    </aop:config>-->
+    </aop:config>
 
 </beans>
