@@ -159,9 +159,6 @@
     </div>
 
 
-
-
-
     <!--底部-->
     <div class="bar-wrapper">
         <div class="bar-right">
@@ -184,9 +181,6 @@
     <button type="button" class="btn btn-success" id="sendMail">发送验证码</button>
     <button type="button" class="btn btn-success" id="surePay">确认付款</button>
 </div>
-
-
-
 
 <script type="text/javascript">
     var flag=true;
@@ -305,24 +299,29 @@
             calcuPrice(labels);
 
             $.ajax({
-                url:"reduceItemsNum",
+                url:"plusItemsNum",
                 type:"post",
                 data:{
                     "pnum":$(this).prev().val(),
                     "username":getCookie("username"),
                     "pid":$(this).attr("pid")
-                }
+                },
             });
 
         });
 
 
         $(".cartBox").on("click",".reduce",function(){
-            if($(this).next().val()<1){
-                $(this).next().val(0);
+            if($(this).next().val()<=1){
+                $(this).parent().parent().parent().remove();
             }else{
                 $(this).next().val(parseInt($(this).next().val())-1);
             }
+            // if($(this).next().val()<1){
+            //     $(this).parent().parent().parent().hide();//hide() 方法隐藏被选元素
+            // }else{
+            //     $(this).next().val(parseInt($(this).next().val())-1);
+            // }
 
             $(this).parent().parent().parent().children().eq(0).find("label").attr("pnum",$(this).next().val());
 
@@ -342,13 +341,18 @@
                     "pnum":$(this).next().val(),
                     "username":getCookie("username"),
                     "pid":$(this).attr("pid")
-                }
+                },
             });
 
         });
 
 
         $(".cartBox").on("click",".delBtn",function(){
+            if($(this).next().val()<=1){
+                $(this).parent().parent().parent().hide();//hide() 方法隐藏被选元素
+            }else{
+                $(this).next().val(parseInt($(this).next().val())-1);
+            }
             $(this).parent().parent().parent().remove();
             $.ajax({
                 url:"removeItems",
@@ -357,15 +361,8 @@
                     "pid":$(this).attr("pid"),
                     "username":getCookie("username")
                 }
-
-            })
+            });
         });
-
-
-
-
-
-
 
         $(".calBtn1").click(function(){
             if($("label[class='mark']").length>=1){
@@ -394,7 +391,6 @@
                 },
                 success:function(data){
                     checkCode=data;
-
 
                 }
             })
@@ -438,20 +434,12 @@
 
                 });
 
-
-
-
-
             }
 
             // }
         })
 
-
-
-
     });
-
 
 
     function calcuPrice(labels) {
