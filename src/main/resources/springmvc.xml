@@ -16,7 +16,7 @@
     <!--组建扫描类路径-->
     <context:component-scan base-package="controller,serviceimpl"/>
     <!-- 启动AspectJ自动代理 -->
-    <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
     <!--对静态资源不进行处理，例如js,css,jpg等等 -->
     <mvc:default-servlet-handler />
@@ -72,7 +72,7 @@
     <!--aop:config标签用来配置有关切面的配置  -->
     <aop:config>
         <!-- 设置切点表达式 以便下面引用 -->
-        <aop:pointcut expression="execution(* controller.*.*(..))" id="cut"/>
+        <aop:pointcut expression="execution(* controller.ShopCarController.deleteProductNum(..))" id="cut"/>
         <!-- 配置切面所用的bean 和优先级 -->
         <aop:aspect ref="myAs" order="1" >
             <!-- 配置切面方法 -->

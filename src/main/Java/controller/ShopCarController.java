@@ -1,6 +1,7 @@
 package controller;
 
 import entity.Productinfo;
+import entity.Userinfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import serviceimpl.ProductinfoServiceImpl;
+import serviceimpl.UserServiceImpl;
 
 import javax.mail.*;
 import javax.mail.internet.AddressException;
@@ -26,6 +28,9 @@ public class ShopCarController {
 
     @Autowired
     ProductinfoServiceImpl psi;
+
+    @Autowired
+    UserServiceImpl usi;
 
     @RequestMapping("/addCar")
     public String addCar(@RequestParam String pid,@RequestParam String username){
@@ -102,6 +107,25 @@ public class ShopCarController {
         }
     }
 
+    @RequestMapping("/sendEmail")
+    public String getEmailCount(@RequestParam String username,HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String email = usi.selectEmailByUsername(username);
+        int randomNum = (int)((Math.random()*9+1)*100000);
+        sendEmail(email,randomNum,req,resp);
+        return String.valueOf(randomNum);
+    }
+
+    @RequestMapping("/deleteProductNum")
+    public synchronized String deleteProductNum(@RequestParam String username,@RequestParam Integer pid,@RequestParam Integer pnum){
+        Productinfo pi = psi.selectByPrimaryKey(pid);
+        if(pi.getpNum()>=pnum){
+            pi.setpNum(pi.getpNum()-pnum);
+            psi.updateByPrimaryKey(pi);
+            return "yes";
+        }else{
+            return "no";
+        }
+    }
 
     public  void sendEmail(String emailCount, int randomNum, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html");

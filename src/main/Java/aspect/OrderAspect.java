@@ -1,16 +1,34 @@
 package aspect;
+import entity.Orderdetail;
+import entity.Orderinfo;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
+import org.springframework.beans.factory.annotation.Autowired;
+import service.OrderdetailService;
+import serviceimpl.OrderdetailServiceImpl;
+import serviceimpl.OrderinfoServiceImpl;
+import serviceimpl.UserServiceImpl;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class OrderAspect {
+    @Autowired
+    OrderinfoServiceImpl osi;
+
+    @Autowired
+    OrderdetailServiceImpl odsi;
+
+    @Autowired
+    UserServiceImpl usi;
     /*
      * 前置通知
      * */
     public void beforeCheck(JoinPoint joinPoint) {
-        Signature sig=joinPoint.getSignature();
-
-        System.out.println("before at "+sig.getName()+"and arg[0] is "+joinPoint.getArgs()[0]);
+//        Signature sig=joinPoint.getSignature();
+//+joinPoint.getArgs()[0]
+//        System.out.println("before at "+sig.getName()+"and arg[0] is ");
 
     }
 
@@ -20,9 +38,9 @@ public class OrderAspect {
      *且后置通知无论方法是不是异常都会执行
      * */
     public void afterCheck(JoinPoint joinPoint) {
-        Signature sig=joinPoint.getSignature();
-
-        System.out.println("After at "+sig.getName()+"and arg[0] is "+joinPoint.getArgs()[0]);
+//        Signature sig=joinPoint.getSignature();
+//+joinPoint.getArgs()[0]
+//        System.out.println("After at "+sig.getName()+"and arg[0] is ");
 
     }
 
@@ -30,6 +48,26 @@ public class OrderAspect {
      * 返回通知
      * */
     public void afterReturn(JoinPoint joinPoint,Object res) {
+        if(res.toString().equals("yes")){
+            Orderinfo oi = new Orderinfo();
+            Orderdetail od = new Orderdetail();
+            oi.setUserid(usi.selectUidByUsername((String)joinPoint.getArgs()[0]));
+            oi.setStatus(0);
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            oi.setOrdertime(sdf.format(date));
+
+            //Long time = System.currentTimeMillis();
+            int randomNum = (int)((Math.random()*9+1)*100000);
+           // String realNum = time+""+randomNum;
+            String realNum = ""+randomNum;
+            oi.setPid(Integer.parseInt(realNum));
+            od.setpId((Integer)joinPoint.getArgs()[1]);
+            od.setOdNum((Integer)joinPoint.getArgs()[2]);
+            od.setOdId(Integer.parseInt(realNum));
+            osi.insert(oi);
+            odsi.insert(od);
+        }
         Signature sig=joinPoint.getSignature();
         System.out.println("After at "+sig.getName()+"return. res= "+res);
 
