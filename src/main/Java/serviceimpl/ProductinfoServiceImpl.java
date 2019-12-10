@@ -20,8 +20,8 @@ public class ProductinfoServiceImpl implements ProductinfoService {
     }
 
     @Override
-    public List<Productinfo> selectAllProductsByP_type(String p_type) {
-        return pfm.selectAllProductsByP_type(p_type);
+    public List<Productinfo> selectAllProductsByP_type(String p_type, Integer page) {
+        return pfm.selectAllProductsByP_type(p_type,page);
     }
 
     @Override

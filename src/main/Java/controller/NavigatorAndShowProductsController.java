@@ -21,8 +21,8 @@ public class NavigatorAndShowProductsController {
     }
 
     @RequestMapping("/selectAllProductsByP_type")
-    List<Productinfo> selectAllProductsByP_type(@RequestParam String p_type){
-        return psi.selectAllProductsByP_type(p_type);
+    List<Productinfo> selectAllProductsByP_type(@RequestParam String p_type,@RequestParam Integer page){
+        return psi.selectAllProductsByP_type(p_type,page);
     }
 
 }

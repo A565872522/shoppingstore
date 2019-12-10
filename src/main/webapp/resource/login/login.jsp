@@ -57,8 +57,8 @@
 
     <div class="register w3layouts agileits" id="registerDiv">
         <h2>注 册</h2>
-        <input type="text"       id="username2"         placeholder="用户名"   >
-        <input type="password"   id="password2"     placeholder="密码"     >
+        <input type="text"       id="username2"     placeholder="用户名"   >
+        <input type="password"   id="password2"    placeholder="密码"     >
         <input type="text"       id="email"        placeholder="邮箱"     >
 
         <div class="send-button w3layouts agileits">

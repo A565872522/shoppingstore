@@ -22,16 +22,21 @@
     select distinct p_type from productinfo
   </select>
 
-  <select id="selectAllProductsByP_type" resultMap="BaseResultMap">
-    select <include refid="Base_Column_List" /> from productinfo where p_type=#{p_type,jdbcType=VARCHAR}
-  </select>
-
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from PRODUCTINFO
     where P_ID = #{pId,jdbcType=DECIMAL}
   </select>
+
+  <!--就是页面给页面传参数-->
+  <select id="selectAllProductsByP_type" resultMap="BaseResultMap">
+        select * from(
+        select t.*,rownum rn from (
+        select * from productinfo where p_type=#{p_type,jdbcType=VARCHAR}) t where rownum&lt;=#{page,jdbcType=DECIMAL}*2)
+        where rn>=(#{page,jdbcType=DECIMAL}-1)*2+1
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from PRODUCTINFO
     where P_ID = #{pId,jdbcType=DECIMAL}
