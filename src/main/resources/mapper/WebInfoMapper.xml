@@ -11,7 +11,7 @@ insert into webinfo(VISITTIME,VISITTIMES) values(#{visittime,jdbcType=VARCHAR},#
 </insert>
 
  <select id="selectAll" resultMap="BaseResultMap" >
- select VISITTIME,VISITTIMES from webinfo order  by VISITTIME
+  select VISITTIME,VISITTIMES from webinfo order by to_date(VISITTIME,'yyyy-MM') DESC
  </select>
 
   <select id="selectByVisitTime" resultMap="BaseResultMap">

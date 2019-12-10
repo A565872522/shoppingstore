@@ -22,6 +22,7 @@ public class MyInterceptor implements HandlerInterceptor {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
         WebInfo wi = wsi.selectByVisitTime(sdf.format(date));
         if(wi==null){
+            wi = new WebInfo();
             wi.setVisittime(sdf.format(date));
             wi.setVisittimes(1);
             wsi.insert(wi);
