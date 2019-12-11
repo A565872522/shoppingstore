@@ -74,7 +74,7 @@
 
             <ul class="sidenav-dropdown" data-sidenav-dropdown>
                 <li><a id="addPro">添加商品</a></li>
-                <li><a href="javascript:;">上架下架商品</a></li>
+                <li><a id="takeoff">上架下架商品</a></li>
             </ul>
         </li>
         <li>
@@ -183,6 +183,7 @@
 </a>
 
 <iframe src="" id="myframe"></iframe>
+<%--<iframe src="" id="myframe1"></iframe>--%>
 
 
 <script>
@@ -200,6 +201,10 @@
 
         $("#addPro").click(function(){
             $("#myframe").attr("src","resource/products/addProducts.jsp");
+        });
+
+        $("#takeoff").click(function () {
+            $("#myframe").attr("src","resource/admin/upanddown.jsp");
         });
 
         $("#undeliver").click(function(){
