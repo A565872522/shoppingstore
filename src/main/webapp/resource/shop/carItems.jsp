@@ -7,7 +7,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>My JSP 'shopping.jsp' starting page</title>
+    <title>购物车</title>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
@@ -20,14 +20,11 @@
     <link rel="stylesheet" href="<%=basePath%>resource/css/carts.css">
     <link rel="stylesheet" href="<%=basePath%>resource/css/search.css">
 
-
     <style>
 
         label .mark{
             background: url("<%=basePath%>images/mark1.png") no-repeat -1px -1px;
         }
-
-
 
         .calBtn1{
             border:1px solid #708090;
@@ -42,7 +39,6 @@
             cursor: pointer;
         }
 
-
         #pop{
             border:5px solid #2F4F4F;
             width: 800px;
@@ -51,7 +47,6 @@
             top:20px;
             left:230px;
             background-color: #87CEFA;
-
         }
 
         body{
@@ -65,7 +60,6 @@
             right:0;
             top:0;
             z-index: 5;
-
         }
 
         #big{
@@ -77,11 +71,9 @@
             opacity: 0.8;
             position: fixed;
             z-index:100;
-
         }
 
         #MyDiv{
-
             display: none;
             width: 65%;
             height: 80%;
@@ -91,7 +83,6 @@
             top:8%;
             left: 16%;
             z-index:120;
-
         }
 
         .calBtn1:hover{
@@ -101,7 +92,6 @@
         #closeImg:hover{
             cursor: pointer;
         }
-
 
         #sendMail{
             position: absolute;
@@ -114,7 +104,6 @@
             left:247px;
             top:100px;
         }
-
 
     </style>
 </head>
@@ -138,8 +127,6 @@
         </ul>
     </div>
 
-
-
     <div class="cartBox">
 
         <div class="shop_info">
@@ -152,13 +139,9 @@
 
         <div class="order_content">
 
-
         </div>
 
-
-
     </div>
-
 
     <!--底部-->
     <div class="bar-wrapper">

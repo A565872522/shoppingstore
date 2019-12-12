@@ -8,7 +8,16 @@
     <base href="<%=basePath%>">
     <title>商品管理</title>
     <meta charset="UTF-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=basePath%>resource/css/carts.css">
+    <link rel="stylesheet" href="<%=basePath%>resource/css/search.css">
     <style>
         .ace{
             list-style-type: none;
@@ -44,226 +53,76 @@
 <html>
 <body>
 <div class='intro'>
-    <ul class="ace">
-        <li>
-            <span>相机</span>
-            <ul>
-                <li class="cc">
-                    <div class='core'>
-                        P300
-                        <div class='line'>上架</div>
-                        <div class='tip'>下架</div>
-                    </div>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <span>家电</span>
-            <ul>
-                <li class="cc">
-                    <div class='core'>
-                        小米电视
-                        <div class='line'>上架</div>
-                        <div class='tip'>下架</div>
-                    </div>
-                </li>
-                <li class="cc">
-                    <div class='core'>
-                        格力空调
-                        <div class='line'>上架</div>
-                        <div class='tip'>下架</div>
-                    </div>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <span>零食</span>
-            <ul>
-                <li class="cc">
-                    <div class='core'>
-                        呀土豆
-                        <div class='line'>上架</div>
-                        <div class='tip'>下架</div>
-                    </div>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <span>汽车</span>
-            <ul>
-                <li class="cc">
-                    <div class='core'>
-                        兰博基尼毒药
-                        <div class='line'>上架</div>
-                        <div class='tip'>下架</div>
-                    </div>
-                </li>
-                <li class="cc">
-                    <div class='core'>
-                        法拉利拉法
-                        <div class='line'>上架</div>
-                        <div class='tip'>下架</div>
-                    </div>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <span>手机</span>
-            <ul>
-                <li class="cc">
-                    <div class='core'>
-                        iphone 11
-                        <div class='line'>上架</div>
-                        <div class='tip'>下架</div>
-                    </div>
-                </li>
-                <li class="cc">
-                    <div class='core'>
-                        Mate 30
-                        <div class='line'>上架</div>
-                        <div class='tip'>下架</div>
-                    </div>
-                </li>
-                <li class="cc">
-                    <div class='core'>
-                        Galaxy S10+
-                        <div class='line'>上架</div>
-                        <div class='tip'>下架</div>
-                    </div>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <span>数码</span>
-            <ul>
-                <li class="cc">
-                    <div class='core'>
-                        Z300
-                        <div class='line'>上架</div>
-                        <div class='tip'>下架</div>
-                    </div>
-                </li>
-                <li class="cc">
-                    <div class='core'>
-                        C300
-                        <div class='line'>上架</div>
-                        <div class='tip'>下架</div>
-                    </div>
-                </li>
-                <li class="cc">
-                    <div class='core'>
-                        ACD
-                        <div class='line'>上架</div>
-                        <div class='tip'>下架</div>
-                    </div>
-                </li>
-                <li class="cc">
-                    <div class='core'>
-                        D400
-                        <div class='line'>上架</div>
-                        <div class='tip'>下架</div>
-                    </div>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <span>化妆品</span>
-            <ul>
-                <li class="cc">
-                    <div class='core'>
-                        MAC999
-                        <div class='line'>上架</div>
-                        <div class='tip'>下架</div>
-                    </div>
-                </li>
-                <li class="cc">
-                    <div class='core'>
-                        香奈儿五号之水
-                        <div class='line'>上架</div>
-                        <div class='tip'>下架</div>
-                    </div>
-                </li>
-            </ul>
-        </li>
-    </ul>
+    <%--<ul class="ace">--%>
+        <%--<li>--%>
+            <%--<span>家电</span>--%>
+            <%--<ul>--%>
+                <%--<li class="cc">--%>
+                    <%--<div class='core'>--%>
+                        <%--小米电视--%>
+                        <%--<div class='line'>上架</div>--%>
+                        <%--<div class='tip'>下架</div>--%>
+                    <%--</div>--%>
+                <%--</li>--%>
+                <%--<li class="cc">--%>
+                    <%--<div class='core'>--%>
+                        <%--格力空调--%>
+                        <%--<div class='line'>上架</div>--%>
+                        <%--<div class='tip'>下架</div>--%>
+                    <%--</div>--%>
+                <%--</li>--%>
+            <%--</ul>--%>
+        <%--</li>--%>
+    <%--</ul>--%>
 </div>
 
 <script type="text/javascript">
+    var flag=true;
     $(function () {
         /*一进入页面就发送请求查询所有类别*/
         $.ajax({
-            url:"selectAllP_type",
+            url:"selectAllProducts",
             type:"post",
             success:function (data) {
                 for(var i=0;i<data.length;i++){
-                    var str="            <div class='core'>" +
-                        "                <div class='line'>"+data[i]+"</div>" +
-                        "                <div class='tip'>下架</div>" +
-                        "            </div>";
-                    $(".line").prepend(str);
+                var str=" <li>"+data[i].pType+"</li>\n" +
+                    "           <li>"+data[i].pName+"</li>\n" +
+                    "           <li>"+data[i].brand+"</li>\n" +
+                    "           <li><a href='javascript:;' class='up'   pnum='"+data[i].pNum+"' pid='"+data[i].pId+"'>上架商品</a></li>\n" +
+                    "           <li><a href='javascript:;' class='down' pid='"+data[i].pId+"'>下架商品</a></li>\n" +
+                    "           <li>"+data[i].status+"</li><br/> "
+                    $(".intro").prepend(str);
                 }
-            }
-        })
-
-        $.ajax({
-            url:"removeProducts",
-            type:"post",
-            success:function (data) {
-                for(var i=0;i<data.length;i++){
-                    var str="            <div class='core'>" +
-                        "                <div class='line'></div>" +
-                        "                <div class='tip'>"+data[i]+"</div>" +
-                        "            </div>";
-                    $(".tip").prepend(str);
-                }
-            }
-        })
-
-        $(".pieces").on("click",".future_ui__piece",function(){
-            var type=$(this).children().children().children().text();
-            $("#myframe").attr("src","<%=basePath%>resource/shop/showProducts.jsp?p_type="+type+"&username="+getQueryString("username"));
-
-            $(".intro").hide();
-            $("#myframe").show();
-            $("#topImg").show();
-
-        });
-
-        $("#topImg").click(function(){
-            $(".intro").show();
-            $("#myframe").hide(1000);
-            $("#topImg").hide();
-        });
-
-        $("#carImg").click(function () {
-            if(getCookie("username")=="null"||getCookie("username")==''||getCookie("username")==undefined){
-                alert(getCookie("username"));
-                window.location.href="<%=basePath%>resource/login/login.jsp";
-            }else {
-                window.open("<%=basePath%>resource/shop/carItems.jsp");
             }
         });
 
-        function getQueryString(name){
-            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-            var r = window.location.search.substr(1).match(reg);
-            if(r!=null)
-                return  decodeURI(r[2]);
-            return null;
-        }
-
-        function getCookie(name){
-            var strcookie = document.cookie;//获取cookie字符串
-            var arrcookie = strcookie.split("; ");//分割
-            //遍历匹配
-            for ( var i = 0; i < arrcookie.length; i++) {
-                var arr = arrcookie[i].split("=");
-                if (arr[0] == name){
-                    return arr[1];
+        $(".intro").on("click",".up",function(){
+            $.ajax({
+                url:"upstore",
+                type:"post",
+                data:{
+                    "pid":$(this).attr("pid"),
+                    "pnum":$(this).attr("pnum")
+                },
+                success:function (data) {
+                    alert("ok");
                 }
-            }
-            return "";
-        }
+            });
+        });
+
+        $(".intro").on("click",".down",function(){
+            $.ajax({
+                url:"downstore",
+                type:"post",
+                data:{
+                    "pid":$(this).attr("pid"),
+                },
+                success:function (data) {
+                    alert("ok");
+                }
+            });
+        });
+
     })
 </script>
 </body>

@@ -35,4 +35,19 @@ public class NavigatorAndShowProductsController {
         return wsi.selectAll();
     }
 
+    @RequestMapping("/selectAllProducts")
+    public List<Productinfo> selectAllProducts(){
+        return psi.selectAllProducts();
+    }
+
+    @RequestMapping("/upstore")
+    public int upstore(@RequestParam Integer pid,@RequestParam Integer pnum){
+        return psi.upstore(pid,pnum);
+    }
+
+    @RequestMapping("/downstore")
+    public int downstore(@RequestParam Integer pid){
+        return psi.downstore(pid);
+    }
+
 }

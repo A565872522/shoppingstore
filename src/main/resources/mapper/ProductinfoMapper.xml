@@ -22,6 +22,10 @@
     select distinct p_type from productinfo
   </select>
 
+  <select id="selectAllProducts" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from productinfo
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -42,6 +46,9 @@
     where P_ID = #{pId,jdbcType=DECIMAL}
   </delete>
   <insert id="insert" parameterType="entity.Productinfo" >
+      <selectKey keyProperty="pId" order="BEFORE" resultType="int">
+          select seq_productinfo_p_id.nextval from dual
+      </selectKey>
     insert into PRODUCTINFO (P_ID, P_CODE, P_NAME, 
       P_TYPE, BRAND, PIC, 
       P_NUM, PRICE, SALE, 
@@ -52,6 +59,9 @@
       #{intro,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="entity.Productinfo" >
+    <selectKey keyProperty="pId" order="BEFORE" resultType="int">
+      select seq_productinfo_p_id.nextval from dual
+    </selectKey>
     insert into PRODUCTINFO
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="pId != null" >
@@ -124,6 +134,15 @@
       </if>
     </trim>
   </insert>
+
+    <update id="upstore">
+      update productinfo set STATUS=0 where P_NUM>0 and p_id=#{pId,jdbcType=DECIMAL}
+    </update>
+
+    <update id="downstore">
+      update productinfo set STATUS=1 where p_id=#{pId,jdbcType=DECIMAL}
+    </update>
+
   <update id="updateByPrimaryKeySelective" parameterType="entity.Productinfo" >
     update PRODUCTINFO
     <set >

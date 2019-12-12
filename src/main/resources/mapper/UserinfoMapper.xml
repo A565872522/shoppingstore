@@ -34,11 +34,11 @@
     delete from USERINFO
     where U_ID = #{uId,jdbcType=DECIMAL}
   </delete>
+
   <insert id="insert" parameterType="entity.Userinfo" >
     <selectKey keyProperty="uId" order="BEFORE" resultType="int">
       select seq_user_info_id.nextval from dual
     </selectKey>
-
     insert into USERINFO (U_ID, USERNAME, PASSWORD,
       EMAIL, REGISTER_TIME)
     values (#{uId,jdbcType=DECIMAL}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 

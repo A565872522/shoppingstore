@@ -33,6 +33,9 @@
             scrolling : no;
             border: 0;
             background-color: rgb(33,33,33);
+        }
+
+        .cc{
 
         }
 
@@ -182,9 +185,7 @@
     <i class="material-icons">menu</i>
 </a>
 
-<iframe src="" id="myframe"></iframe>
-<%--<iframe src="" id="myframe1"></iframe>--%>
-
+<iframe src="" id="myframe" class="cc"></iframe>
 
 <script>
 
@@ -204,7 +205,7 @@
         });
 
         $("#takeoff").click(function () {
-            $("#myframe").attr("src","resource/admin/upanddown.jsp");
+            $(".cc").attr("src","resource/admin/upanddown.jsp");
         });
 
         $("#undeliver").click(function(){
