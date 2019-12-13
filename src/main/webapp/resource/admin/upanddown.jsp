@@ -53,27 +53,7 @@
 <html>
 <body>
 <div class='intro'>
-    <%--<ul class="ace">--%>
-        <%--<li>--%>
-            <%--<span>家电</span>--%>
-            <%--<ul>--%>
-                <%--<li class="cc">--%>
-                    <%--<div class='core'>--%>
-                        <%--小米电视--%>
-                        <%--<div class='line'>上架</div>--%>
-                        <%--<div class='tip'>下架</div>--%>
-                    <%--</div>--%>
-                <%--</li>--%>
-                <%--<li class="cc">--%>
-                    <%--<div class='core'>--%>
-                        <%--格力空调--%>
-                        <%--<div class='line'>上架</div>--%>
-                        <%--<div class='tip'>下架</div>--%>
-                    <%--</div>--%>
-                <%--</li>--%>
-            <%--</ul>--%>
-        <%--</li>--%>
-    <%--</ul>--%>
+
 </div>
 
 <script type="text/javascript">
