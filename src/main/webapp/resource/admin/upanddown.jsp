@@ -18,35 +18,15 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=basePath%>resource/css/carts.css">
     <link rel="stylesheet" href="<%=basePath%>resource/css/search.css">
+
     <style>
-        .ace{
+        .intro{
             list-style-type: none;
         }
-        .core{
-            border: solid 1px;
-            height: 260px;
-            width: 200px;
-        }
-        .cc{
-            list-style-type: none;
-            display: inline-block;
-        }
-        .line{
-            border: solid 1px;
-            position: relative;
-            height: 50px;
-            width: 100px;
-            top: 100px;
-            left: 50px;
-        }
-        .tip{
-            border: solid 1px;
-            position: relative;
-            height: 50px;
-            width: 100px;
-            top: 110px;
-            left: 50px;
-        }
+        /*.cc{*/
+            /*list-style-type: none;*/
+            /*display: inline-block;*/
+        /*}*/
     </style>
 </head>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
