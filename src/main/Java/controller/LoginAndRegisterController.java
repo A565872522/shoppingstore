@@ -1,12 +1,15 @@
 package controller;
 
+import entity.Admininfo;
 import entity.Userinfo;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import service.UserService;
+import serviceimpl.AdmininfoServiceImpl;
 import serviceimpl.UserServiceImpl;
 
 import javax.servlet.http.Cookie;
@@ -21,6 +24,9 @@ public class LoginAndRegisterController {
 
     @Autowired
     UserServiceImpl usi;
+
+    @Autowired
+    AdmininfoServiceImpl asi;
 
     @RequestMapping("/register")
     public String register(@RequestParam String username, @RequestParam String password, @RequestParam String email) {
@@ -83,6 +89,35 @@ public class LoginAndRegisterController {
                         cookie2.setMaxAge(10000);
                         resp.addCookie(cookie2);
                     }
+                return "yes";
+            }else{
+                return "no";
+            }
+        }
+    }
+
+    @RequestMapping("/adminlogin")
+    public String adminlogin(@RequestParam String adName, @RequestParam String adPassword, @RequestParam String flag, HttpServletRequest req, HttpServletResponse resp){
+        Admininfo ai = asi.selectByAdName(adName);
+        if(ai==null){
+            return "none";
+        }else{
+            if(DigestUtils.md5Hex(adPassword.getBytes()).equals(ai.getAdPassword())){
+                Cookie name = new Cookie("adName", adName);
+                Cookie pwd = new Cookie("adPassword", adPassword);
+                name.setMaxAge(50000);
+                pwd.setMaxAge(50000);
+                resp.addCookie(name);
+                resp.addCookie(pwd);
+                if(flag.equals("yes")){
+                    Cookie cookie1 = new Cookie("flag", "no");
+                    cookie1.setMaxAge(50000);
+                    resp.addCookie(cookie1);
+                }else{
+                    Cookie cookie2 = new Cookie("flag", "yes");
+                    cookie2.setMaxAge(50000);
+                    resp.addCookie(cookie2);
+                }
                 return "yes";
             }else{
                 return "no";

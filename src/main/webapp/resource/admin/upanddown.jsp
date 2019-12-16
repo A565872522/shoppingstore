@@ -22,6 +22,8 @@
     <style>
         .intro{
             list-style-type: none;
+            position: absolute;
+            left: 500px;
         }
         /*.cc{*/
             /*list-style-type: none;*/

@@ -10,7 +10,7 @@ public interface ProductinfoMapper {
 
     List<Productinfo> selectAllProducts();
 
-    int upstore(@Param(value = "pId")Integer pId,@Param(value = "pNum")Integer pNum);
+    int upstore(@Param(value = "pId") Integer pId,@Param(value = "pNum") Integer pNum);
 
     int downstore(Integer pId);
 

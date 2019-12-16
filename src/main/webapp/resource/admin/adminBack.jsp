@@ -201,11 +201,21 @@
 
 
         $("#addPro").click(function(){
-            $("#myframe").attr("src","resource/products/addProducts.jsp");
+            if(getCookie("username")=="null"||getCookie("username")==''||getCookie("username")==undefined){
+                alert(getCookie("username"));
+                window.location.href="<%=basePath%>resouce/login/adminlogin.jsp";
+            }else{
+                $("#myframe").attr("src","resource/products/addProducts.jsp");
+            }
         });
 
         $("#takeoff").click(function () {
-            $(".cc").attr("src","resource/admin/upanddown.jsp");
+            if(getCookie("username")=="null"||getCookie("username")==''||getCookie("username")==undefined){
+                alert(getCookie("username"));
+                window.location.href="<%=basePath%>resouce/login/adminlogin.jsp";
+            }else{
+                $(".cc").attr("src","resource/admin/upanddown.jsp");
+            }
         });
 
         $("#undeliver").click(function(){

@@ -1,9 +1,8 @@
-package mapper;
+package service;
 
 import entity.Admininfo;
-import org.apache.ibatis.annotations.Param;
 
-public interface AdmininfoMapper {
+public interface AdmininfoService {
 
     Admininfo selectByAdName(String adName);
 

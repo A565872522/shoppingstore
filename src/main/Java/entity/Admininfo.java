@@ -40,4 +40,5 @@ public class Admininfo {
     public void setRole(Integer role) {
         this.role = role;
     }
+
 }
