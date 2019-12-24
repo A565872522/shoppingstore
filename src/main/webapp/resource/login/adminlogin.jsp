@@ -31,19 +31,12 @@
         <input type="text"      id="username1"  placeholder="用户名" >
         <input type="password"  id="password1" placeholder="密码"   >
 
-        <ul class="tick w3layouts agileits">
-            <li>
-                <input type="checkbox" id="brand1" value="" >
-                <label for="brand1"><span></span>记住我</label>
-            </li>
-        </ul>
-
         <div class="send-button w3layouts agileits">
             <input type="button" value="登 录" id="btnLogin">
             <div id="msg"></div>
         </div>
 
-        <a href="<%=path%>/resource/login/forgetPwd.jsp" target="_blank">忘记密码?</a>
+        <%--<a href="<%=path%>/resource/login/forgetPwd.jsp" target="_blank">忘记密码?</a>--%>
 
     </div>
 

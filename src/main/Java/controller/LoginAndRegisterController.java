@@ -1,5 +1,6 @@
 package controller;
 
+import entity.Adminhandle;
 import entity.Admininfo;
 import entity.Userinfo;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 public class LoginAndRegisterController {
@@ -103,12 +105,6 @@ public class LoginAndRegisterController {
             return "none";
         }else{
             if(DigestUtils.md5Hex(adPassword.getBytes()).equals(ai.getAdPassword())){
-                Cookie name = new Cookie("adName", adName);
-                Cookie pwd = new Cookie("adPassword", adPassword);
-                name.setMaxAge(50000);
-                pwd.setMaxAge(50000);
-                resp.addCookie(name);
-                resp.addCookie(pwd);
                 if(flag.equals("yes")){
                     Cookie cookie1 = new Cookie("flag", "no");
                     cookie1.setMaxAge(50000);
@@ -145,4 +141,10 @@ public class LoginAndRegisterController {
             }
         }
     }
+
+    @RequestMapping("/selectAllHandle")
+    public List<Adminhandle> selectAllHandle(){
+        return asi.selectAllHandle();
+    }
+
 }

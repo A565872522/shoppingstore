@@ -1,9 +1,14 @@
 package mapper;
 
+import entity.Adminhandle;
 import entity.Admininfo;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface AdmininfoMapper {
+
+    List<Adminhandle> selectAllHandle();
 
     Admininfo selectByAdName(String adName);
 

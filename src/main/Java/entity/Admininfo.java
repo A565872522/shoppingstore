@@ -22,7 +22,7 @@ public class Admininfo {
     }
 
     public void setAdName(String adName) {
-        this.adName = adName == null ? null : adName.trim();
+        this.adName = adName;
     }
 
     public String getAdPassword() {
@@ -30,7 +30,7 @@ public class Admininfo {
     }
 
     public void setAdPassword(String adPassword) {
-        this.adPassword = adPassword == null ? null : adPassword.trim();
+        this.adPassword = adPassword;
     }
 
     public Integer getRole() {

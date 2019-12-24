@@ -201,26 +201,19 @@
 
 
         $("#addPro").click(function(){
-            if(getCookie("username")=="null"||getCookie("username")==''||getCookie("username")==undefined){
-                alert(getCookie("username"));
-                window.location.href="<%=basePath%>resouce/login/adminlogin.jsp";
-            }else{
-                $("#myframe").attr("src","resource/products/addProducts.jsp");
-            }
+            $("#myframe").attr("src","resource/products/addProducts.jsp");
         });
 
         $("#takeoff").click(function () {
-            if(getCookie("username")=="null"||getCookie("username")==''||getCookie("username")==undefined){
-                alert(getCookie("username"));
-                window.location.href="<%=basePath%>resouce/login/adminlogin.jsp";
-            }else{
-                $(".cc").attr("src","resource/admin/upanddown.jsp");
-            }
+            $(".cc").attr("src","resource/admin/upanddown.jsp");
         });
 
         $("#undeliver").click(function(){
             $("#myframe").attr("src","resource/admin/unDeliverOrders.jsp");
+        });
 
+        $("#backdeliver").click(function () {
+            $("#myframe").attr("src","resource/admin/backDeliverOrders.jsp");
         });
 
     })

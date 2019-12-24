@@ -47,12 +47,12 @@
             type:"post",
             success:function (data) {
                 for(var i=0;i<data.length;i++){
-                var str=" <li>"+data[i].pType+"</li>\n" +
-                    "           <li>"+data[i].pName+"</li>\n" +
-                    "           <li>"+data[i].brand+"</li>\n" +
-                    "           <li><a href='javascript:;' class='up'   pnum='"+data[i].pNum+"' pid='"+data[i].pId+"'>上架商品</a></li>\n" +
-                    "           <li><a href='javascript:;' class='down' pid='"+data[i].pId+"'>下架商品</a></li>\n" +
-                    "           <li>"+data[i].status+"</li><br/> "
+                    var str=" <li>"+data[i].pType+"</li>\n" +
+                        "           <li>"+data[i].pName+"</li>\n" +
+                        "           <li>"+data[i].brand+"</li>\n" +
+                        "           <li><a href='javascript:;' class='up'   pnum='"+data[i].pNum+"' pid='"+data[i].pId+"'>上架商品</a></li>\n" +
+                        "           <li><a href='javascript:;' class='down' pid='"+data[i].pId+"'>下架商品</a></li>\n" +
+                        "           <li>"+data[i].status+"</li><br/> "
                     $(".intro").prepend(str);
                 }
             }

@@ -315,7 +315,6 @@ $(function(){
 
    $("#carImg").click(function () {
        if(getCookie("username")=="null"||getCookie("username")==''||getCookie("username")==undefined){
-           // alert(getCookie("username"));
            window.location.href="<%=basePath%>resource/login/login.jsp";
        }else {
            window.open("<%=basePath%>resource/shop/carItems.jsp");

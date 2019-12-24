@@ -4,13 +4,28 @@
   <resultMap id="BaseResultMap" type="entity.Admininfo" >
     <id column="AD_ID" property="adId" jdbcType="DECIMAL" />
     <result column="AD_NAME" property="adName" jdbcType="VARCHAR" />
-    <result column="AD_PASSWORD" property="adPassword" jdbcType="VARCHAR" />
-    <result column="ROLE" property="role" jdbcType="DECIMAL" />
-  </resultMap>
+  <result column="AD_PASSWORD" property="adPassword" jdbcType="VARCHAR" />
+  <result column="ROLE" property="role" jdbcType="DECIMAL" />
+</resultMap>
+
+    <resultMap id="BaseResultMap1" type="entity.Adminhandle">
+        <result column="P_TYPE" property="pType" jdbcType="VARCHAR" />
+        <result column="BRAND" property="brand" jdbcType="VARCHAR" />
+        <result column="P_NAME" property="pName" jdbcType="VARCHAR" />
+        <result column="PRICE" property="price" jdbcType="DECIMAL" />
+        <result column="P_CODE" property="pCode" jdbcType="DECIMAL" />
+        <result column="OD_NUM" property="odNum" jdbcType="DECIMAL" />
+        <result column="STATUS" property="status" jdbcType="DECIMAL" />
+        <result column="ORDERTIME" property="ordertime" jdbcType="VARCHAR" />
+    </resultMap>
   <!--column 是对应数据库中表的字段名称,property是对应的bean里面的属性名称-->
   <sql id="Base_Column_List" >
     AD_ID, AD_NAME, AD_PASSWORD, ROLE
   </sql>
+  <!--三表连表查询-->
+  <select id="selectAllHandle" resultMap="BaseResultMap1">
+    select p.p_type,p.brand,p.p_name,p.price,p.p_code,od.od_num,oi.status,oi.ordertime from productinfo p,orderdetail od,orderinfo oi where p.p_id=od.p_id and od.od_id=oi.pid and oi.status=0
+  </select>
 
   <select id="selectByAdName" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/> from admininfo where AD_NAME=#{adName,jdbcType=VARCHAR}

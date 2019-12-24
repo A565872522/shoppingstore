@@ -46,9 +46,7 @@
     where P_ID = #{pId,jdbcType=DECIMAL}
   </delete>
   <insert id="insert" parameterType="entity.Productinfo" >
-      <selectKey keyProperty="pId" order="BEFORE" resultType="int">
-          select seq_productinfo_p_id.nextval from dual
-      </selectKey>
+     
     insert into PRODUCTINFO (P_ID, P_CODE, P_NAME, 
       P_TYPE, BRAND, PIC, 
       P_NUM, PRICE, SALE, 
