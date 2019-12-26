@@ -20,13 +20,17 @@
         <result column="ORDERTIME" property="ordertime" jdbcType="VARCHAR" />
     </resultMap>
 
-  <resultMap id="deliver" type="entity.Orderinfo" >
-    <id column="O_ID" property="oId" jdbcType="DECIMAL" />
-    <result column="USERID" property="userid" jdbcType="DECIMAL" />
-    <result column="STATUS" property="status" jdbcType="DECIMAL" />
-    <result column="ORDERTIME" property="ordertime" jdbcType="VARCHAR" />
-    <result column="PID" property="pid" jdbcType="DECIMAL" />
-  </resultMap>
+    <resultMap id="BaseResultMap2" type="entity.Adminhandle">
+      <id column="O_ID" property="oId" jdbcType="DECIMAL" />
+      <result column="P_TYPE" property="pType" jdbcType="VARCHAR" />
+      <result column="BRAND" property="brand" jdbcType="VARCHAR" />
+        <result column="P_NAME" property="pName" jdbcType="VARCHAR" />
+        <result column="PRICE" property="price" jdbcType="DECIMAL" />
+        <result column="P_CODE" property="pCode" jdbcType="DECIMAL" />
+        <result column="OD_NUM" property="odNum" jdbcType="DECIMAL" />
+        <result column="STATUS" property="status" jdbcType="DECIMAL" />
+        <result column="ORDERTIME" property="ordertime" jdbcType="VARCHAR" />
+    </resultMap>
   <!--column 是对应数据库中表的字段名称,property是对应的bean里面的属性名称-->
   <sql id="Base_Column_List" >
     AD_ID, AD_NAME, AD_PASSWORD, ROLE
@@ -36,10 +40,9 @@
     select p.p_type,p.brand,p.p_name,p.price,p.p_code,od.od_num,oi.status,oi.ordertime,oi.O_ID from productinfo p,orderdetail od,orderinfo oi where p.p_id=od.p_id and od.od_id=oi.pid and oi.status=0
   </select>
 
-  <!--&lt;!&ndash;修改订单状态：发货&ndash;&gt;-->
-  <!--<update id="deliver" parameterType="java.lang.Integer">-->
-    <!--update ORDERINFO set STATUS = 1 where O_ID = #{oId,jdbcType=DECIMAL}-->
-  <!--</update>-->
+  <select id="selectAllMessage" resultMap="BaseResultMap2">
+    select p.p_type,p.brand,p.p_name,p.price,p.p_code,od.od_num,oi.status,oi.ordertime,oi.O_ID from productinfo p,orderdetail od,orderinfo oi where p.p_id=od.p_id and od.od_id=oi.pid and oi.status=1
+  </select>
 
   <select id="selectByAdName" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/> from admininfo where AD_NAME=#{adName,jdbcType=VARCHAR}

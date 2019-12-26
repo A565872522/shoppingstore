@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface AdmininfoService {
 
+    List<Adminhandle> selectAllMessage();
+
     List<Adminhandle> selectAllHandle();
 
     Admininfo selectByAdName(String adName);

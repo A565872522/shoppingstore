@@ -4,6 +4,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<html>
 <head>
     <base href="<%=basePath%>">
     <title>待发货</title>
@@ -30,7 +31,6 @@
     </style>
 </head>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
 <body>
 <div class='intro'>
     <table border="5" align="center">
@@ -78,7 +78,6 @@
         });
 
         $(".intro").on("click",".send",function(){
-            alert($(this).attr("oid"));
             $.ajax({
                 url:"deliver",
                 type:"post",
@@ -94,19 +93,6 @@
                 }
             });
         });
-
-        // $(".intro").on("click",".down",function(){
-        //     $.ajax({
-        //         url:"downstore",
-        //         type:"post",
-        //         data:{
-        //             "pid":$(this).attr("pid"),
-        //         },
-        //         success:function (data) {
-        //             alert("ok");
-        //         }
-        //     });
-        // });
     })
 </script>
 </body>

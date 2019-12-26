@@ -15,6 +15,11 @@ public class AdmininfoServiceImpl implements AdmininfoService {
     AdmininfoMapper am;
 
     @Override
+    public List<Adminhandle> selectAllMessage() {
+        return am.selectAllMessage();
+    }
+
+    @Override
     public List<Adminhandle> selectAllHandle() {
         return am.selectAllHandle();
     }

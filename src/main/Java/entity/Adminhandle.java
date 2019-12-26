@@ -2,6 +2,8 @@ package entity;
 
 public class Adminhandle {
 
+    private Integer oId;
+
     private String pType;
 
     private String brand;
@@ -17,6 +19,14 @@ public class Adminhandle {
     private Integer status;
 
     private String ordertime;
+
+    public Integer getoId() {
+        return oId;
+    }
+
+    public void setoId(Integer oId) {
+        this.oId = oId;
+    }
 
     public String getpType() {
         return pType;

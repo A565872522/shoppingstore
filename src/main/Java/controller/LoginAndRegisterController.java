@@ -158,11 +158,30 @@ public class LoginAndRegisterController {
         Orderinfo oi = new Orderinfo();
         oi.setStatus(1);
         oi.setoId(oid);
-        int i =osi.updateByPrimaryKeySelective(oi);
+        int i = osi.updateByPrimaryKeySelective(oi);
         System.out.println(i);
         if(i>0){
             return 1;
         }else {
+            return 0;
+        }
+    }
+
+    @RequestMapping("/selectAllMessage")
+    public List<Adminhandle> selectAllMessage(){
+        return asi.selectAllMessage();
+    }
+
+    @RequestMapping("/deliver2")
+    public int deliver2(Integer oid){
+        Orderinfo oi2 = new Orderinfo();
+        oi2.setStatus(2);
+        oi2.setoId(oid);
+        int i = osi.updateByPrimaryKeySelective(oi2);
+        System.out.println(i);
+        if(i>0){
+            return 1;
+        }else{
             return 0;
         }
     }

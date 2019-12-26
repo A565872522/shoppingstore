@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface AdmininfoMapper {
 
+    List<Adminhandle> selectAllMessage();
+
     List<Adminhandle> selectAllHandle();
 
     Admininfo selectByAdName(String adName);
