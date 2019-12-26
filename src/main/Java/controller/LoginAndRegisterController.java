@@ -2,15 +2,18 @@ package controller;
 
 import entity.Adminhandle;
 import entity.Admininfo;
+import entity.Orderinfo;
 import entity.Userinfo;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import service.UserService;
 import serviceimpl.AdmininfoServiceImpl;
+import serviceimpl.OrderinfoServiceImpl;
 import serviceimpl.UserServiceImpl;
 
 import javax.servlet.http.Cookie;
@@ -26,6 +29,9 @@ public class LoginAndRegisterController {
 
     @Autowired
     UserServiceImpl usi;
+
+    @Autowired
+    OrderinfoServiceImpl osi;
 
     @Autowired
     AdmininfoServiceImpl asi;
@@ -147,4 +153,17 @@ public class LoginAndRegisterController {
         return asi.selectAllHandle();
     }
 
+    @RequestMapping("/deliver")
+    public int deliver(Integer oid){
+        Orderinfo oi = new Orderinfo();
+        oi.setStatus(1);
+        oi.setoId(oid);
+        int i =osi.updateByPrimaryKeySelective(oi);
+        System.out.println(i);
+        if(i>0){
+            return 1;
+        }else {
+            return 0;
+        }
+    }
 }

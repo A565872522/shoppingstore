@@ -46,7 +46,9 @@ public class NavigatorAndShowProductsController {
     }
 
     @RequestMapping("/downstore")
-    public int downstore(@RequestParam Integer pid){
+    public int downstore(Integer pid){
+
+        System.out.println(pid);
         return psi.downstore(pid);
     }
 

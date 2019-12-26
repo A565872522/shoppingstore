@@ -23,7 +23,7 @@
   </delete>
   <insert id="insert" parameterType="entity.Orderinfo" >
     <selectKey keyProperty="oId" order="BEFORE" resultType="int">
-    select seq_orderinfo_o_id.nextval from dual
+      select seq_orderinfo_o_id.nextval from dual
     </selectKey>
     insert into ORDERINFO (O_ID, USERID, STATUS, 
       ORDERTIME, PID)

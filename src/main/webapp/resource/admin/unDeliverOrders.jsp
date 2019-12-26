@@ -70,26 +70,30 @@
                         "            <td>"+data[i].odNum+"</td>\n" +
                         "            <td>"+data[i].status+"</td>\n" +
                         "            <td>"+data[i].ordertime+"</td>\n" +
-                        "            <td><a href='javascript:;' class='down' pid='"+data[i].pId+"'>发货</a></td>\n" +
+                        "            <td><button class='send' oid='"+data[i].oId+"'>发货</button></td>\n" +
                         "        </tr>"
                     $(".cc").after(str);
                 }
             }
         });
 
-        // $(".intro").on("click",".up",function(){
-        //     $.ajax({
-        //         url:"upstore",
-        //         type:"post",
-        //         data:{
-        //             "pid":$(this).attr("pid"),
-        //             "pnum":$(this).attr("pnum")
-        //         },
-        //         success:function (data) {
-        //             alert("ok");
-        //         }
-        //     });
-        // });
+        $(".intro").on("click",".send",function(){
+            alert($(this).attr("oid"));
+            $.ajax({
+                url:"deliver",
+                type:"post",
+                data:{
+                    "oid":$(this).attr("oid")
+                },
+                success:function (data) {
+                    if(data==1){
+                        alert("成功")
+                    }else{
+                        alert("失败")
+                    }
+                }
+            });
+        });
 
         // $(".intro").on("click",".down",function(){
         //     $.ajax({

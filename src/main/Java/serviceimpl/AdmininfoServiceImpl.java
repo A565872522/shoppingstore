@@ -14,7 +14,6 @@ public class AdmininfoServiceImpl implements AdmininfoService {
     @Autowired
     AdmininfoMapper am;
 
-
     @Override
     public List<Adminhandle> selectAllHandle() {
         return am.selectAllHandle();
